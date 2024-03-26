@@ -10,7 +10,7 @@ const TextFetcher = ({ serverEndPoint, dataAttribute }) => {
       try {
         const response = await axios.get(serverEndPoint, {
           headers: {
-            Authorization: 'Bearer 8defbe8f1b33cf6c8ea7279c654316e7d047c7defd57811d6040dbedc585ae1ff109986ae9a8356c159ec79ae15e650f77058078d8fbb183dd3812fe738e82e8970845663ad14a419eeaeb27eef108e1e7c2793cfb4136a3c50e36ef6de47fdaf5ddfa34c798366ed9f42c517257f1937cfe9473ecf36585632377a0dcba0cde'
+            Authorization: `Bearer ${import.meta.env.VITE_BEARER_TOKEN}`
           }
         });
         console.log(response.data);
