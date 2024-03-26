@@ -2,8 +2,8 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
-const TextFetcher = ({ serverEndPoint, dataAttribute }) => {
-  const [textValue, setTextValue] = useState('');
+const TextFetcher = ({ serverEndPoint, dataAttribute, order }) => {
+  const [imgSrc, setImgSrc] = useState('');
 
   useEffect(() => {
     const fetchData = async () => {
@@ -14,7 +14,7 @@ const TextFetcher = ({ serverEndPoint, dataAttribute }) => {
           }
         });
         console.log(response.data);
-        setTextValue(response.data.data.attributes[dataAttribute]); // Assuming your API returns an object with a 'text' property
+        setImgSrc(response.data.data.attributes[dataAttribute].data.attributes.formats.small.url); // Assuming your API returns an object with a 'text' property
       } catch (error) {
         console.error('Error fetching data:', error);
       }
@@ -24,9 +24,7 @@ const TextFetcher = ({ serverEndPoint, dataAttribute }) => {
   }, [serverEndPoint, dataAttribute]);
 
   return (
-    <>
-      {textValue}
-    </>
+    <div className={order} style={{backgroundImage: `url('http://35.202.129.105:1337${imgSrc}')`}}></div>
   );
 };
 
